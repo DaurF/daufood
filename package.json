@@ -1,0 +1,21 @@
+{
+  "name": "erkin",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "install-server": "cd client && npm install",
+    "install-client": "cd client && npm install",
+    "install": "npm run install-server && npm run install client",
+    "server": "npm start --prefix server",
+    "client": "npm run dev --prefix client",
+    "watch": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

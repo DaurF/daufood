@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    /** gray: 555 333 */
+    :root {
+        --primary-color: #8aa27d;
+        --secondary-color: #FCF7EF;
+        --tertiary-color: #271f1f;
+    }
+
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+
+    html {
+        font-size: 62.5%;
+        overflow-x: hidden;
+    }
+
+    body {
+        font-family: Raleway, sans-serif;
+        line-height: 1;
+        font-weight: 400;
+        color: #555;
+        overflow-x: hidden;
+        scroll-behavior: smooth;
+    }
+
+    .heading-primary,
+    .heading-secondary,
+    .heading-tertiary {
+        font-weight: 800;
+        color: #333;
+        /* color: #45260a; */
+        /* color: #343a40; */
+        /*letter-spacing: -0.5px;*/
+    }
+
+    .heading-primary {
+        font-size: 6.2rem;
+        line-height: 1.1;
+        margin-bottom: 3.2rem;
+    }
+
+    .heading-secondary {
+        font-size: 4.4rem;
+        line-height: 1.1;
+        margin-bottom: 6.4rem;
+    }
+
+    .heading-tertiary {
+        font-size: 3.6rem;
+        margin-bottom: 2.4rem;
+    }
+
+    .btn,
+    .btn:link,
+    .btn:visited {
+        display: inline-block;
+        font-size: 1.6rem;
+        font-weight: 600;
+        padding: 2rem;
+        cursor: pointer;
+        font-family: inherit;
+        transition: all 0.15s;
+    }
+
+    .btn--full:link,
+    .btn--full:visited {
+        color: white;
+        background: #6e8264;
+    }
+
+    .btn--full:hover,
+    .btn--full:active {
+        background: #7c9271;
+    }
+
+    .btn--outline:link,
+    .btn--outline:visited {
+        color: #777;
+        border: 1.6px solid #777;
+    }
+
+    .btn--outline:hover,
+    .btn--outline:active {
+        border-color: #777;
+        background-color: rgba(119, 119, 119, 0.4);
+        color: #fff;
+    }
+}
