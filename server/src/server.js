@@ -10,7 +10,7 @@ const server = http.createServer(app);
 const PORT = process.env.PORT || 8000;
 
 function startServer() {
-  mysqlConnect();
+  // mysqlConnect();
   server.listen(PORT, () => {
     console.log(`Server is listening on port ${PORT}`);
   });
