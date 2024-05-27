@@ -11,10 +11,6 @@
           <li>
             <a class="nav-link" href="#">О нас</a>
           </li>
-
-          <!--          <li>-->
-          <!--            <a class="nav-link" href="#">Калкулятор БЖУ</a>-->
-          <!--          </li>-->
         </ul>
       </nav>
       <ul class="contacts">
@@ -32,6 +28,22 @@
             <IconWhatsapp/>
           </a>
           <a href="tel:+77055850442" class="contact-number">+7-705-585-04-42</a>
+        </li>
+      </ul>
+      <ul class="auth-links">
+        <li class="auth-link">
+          <router-link to="/login">
+            <button class="btn btn--outline">
+              Войти
+            </button>
+          </router-link>
+        </li>
+        <li class="auth-link">
+          <router-link to="/signup">
+            <button class="btn btn--full">
+              Регистрация
+            </button>
+          </router-link>
         </li>
       </ul>
     </div>
@@ -119,5 +131,15 @@ a.contact-number:visited {
   background-size: 1.4rem 2px;
   background-position: bottom center;
   background-repeat: no-repeat;
+}
+
+.auth-links {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.auth-link .btn {
+  font-size: 1.6rem;
+  padding: 1.2rem;
 }
 </style>
