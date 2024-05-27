@@ -1,3 +1,6 @@
+import dotenv from "dotenv";
+
+dotenv.config();
 import express from "express";
 import cors from "cors";
 import api from "./routes/api.js";
@@ -11,4 +14,8 @@ app.use(express.json());
 // Routers
 app.use("/api/v1", api);
 
-export default app;
+const PORT = process.env.PORT || 8000
+
+app.listen(PORT, () => {
+  console.log(`Server is listening on port ${PORT}`)
+})
