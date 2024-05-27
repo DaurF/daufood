@@ -1,12 +1,16 @@
 import express from "express";
 import ordersRouter from './orders/orders.router.js'
 import daysOptionsRouter from "./days-options/days-options.router.js";
+import authRouter from "./auth/auth.router.js";
+import usersRouter from "./users/users.router.js";
 
 const router = express.Router();
 const API_TOKEN = "140d03f3-018c-456c-a82a-08691e961e32";
 
 router.use("/orders", ordersRouter);
 router.use('/days-options', daysOptionsRouter)
+router.use('/auth', authRouter)
+router.use('/users', usersRouter)
 router.post("/register-call", async (req, res) => {
   const agent_id = req.body.agentId;
   const body = {
@@ -27,8 +31,8 @@ router.post("/register-call", async (req, res) => {
     },
     body: JSON.stringify(body),
   });
-  const { call_id: callId, sample_rate: sampleRate } = await response.json();
-  return res.status(201).json({ callId, sampleRate });
+  const {call_id: callId, sample_rate: sampleRate} = await response.json();
+  return res.status(201).json({callId, sampleRate});
 });
 
 export default router;

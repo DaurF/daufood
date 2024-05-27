@@ -1,7 +1,7 @@
 <template>
   <header class="header">
     <div class="nav-wrapper">
-      <router-link class="logo-link" to="/"> ErkinFood</router-link>
+      <router-link class="logo-link" to="/"> DauTamaq</router-link>
       <nav class="nav">
         <ul class="nav-links">
           <li>
@@ -31,20 +31,27 @@
         </li>
       </ul>
       <ul class="auth-links">
-        <li class="auth-link">
-          <router-link to="/login">
-            <button class="btn btn--outline">
-              Войти
-            </button>
-          </router-link>
-        </li>
-        <li class="auth-link">
-          <router-link to="/signup">
-            <button class="btn btn--full">
-              Регистрация
-            </button>
-          </router-link>
-        </li>
+        <template v-if="!store.loggedIn">
+          <li class="auth-link">
+            <router-link to="/login">
+              <button class="btn btn--outline">
+                Войти
+              </button>
+            </router-link>
+          </li>
+          <li class="auth-link">
+            <router-link to="/signup">
+              <button class="btn btn--full">
+                Регистрация
+              </button>
+            </router-link>
+          </li>
+        </template>
+        <template v-else>
+          <button class="btn btn--full" @click.prevent="logout">
+            Выйти
+          </button>
+        </template>
       </ul>
     </div>
   </header>
@@ -52,6 +59,14 @@
 <script setup>
 import IconWhatsapp from "@/components/icons/IconWhatsapp.vue";
 import IconTelegram from "@/components/icons/IconTelegram.vue";
+import {useUserStore} from '@/stores'
+
+const store = useUserStore()
+
+function logout() {
+  store.unsetUser()
+  localStorage.removeItem('userId')
+}
 </script>
 
 <style scoped>
@@ -138,8 +153,14 @@ a.contact-number:visited {
   gap: 0.8rem;
 }
 
-.auth-link .btn {
+.auth-links .btn {
   font-size: 1.6rem;
   padding: 1.2rem;
+}
+
+.btn--outline:hover,
+.btn--outline:active {
+  background: none;
+  color: var(--primary-color);
 }
 </style>

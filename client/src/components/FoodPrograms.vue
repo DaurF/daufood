@@ -82,29 +82,29 @@
                     class="btn days-options__btn"
                     :class="{
                     'days-options__btn--selected':
-                      option.prg_id === selDaysOption.prg_id && option.days === selDaysOption.days
+                      option.prg_id === selDaysOption.prg_id && option.days_amount === selDaysOption.days_amount
                   }"
                     @click.prevent="selDaysOption = option"
                 >
-                  <span class="discount-mark" v-if="option.discount > 0">
-                    {{ option.discount * 100 }}%
+                  <span class="discount-mark" v-if="Number(option.discount) > 0">
+                    {{ Number(option.discount) * 100 }}%
                   </span>
                   <span>{{ option.name_ru }}</span>
                 </button>
               </div>
             </div>
             <div class="in-total">
-              <div class="in-total-price">
+              <div class="in-total-price" v-if="selDaysOption">
                 <p class="in-total-price__label">Итого:</p>
-                <!--                <p-->
-                <!--                    class="in-total-price__old-price"-->
-                <!--                    v-if="selDaysOption.oldPriceTotal !== selDaysOption.priceTotal"-->
-                <!--                >-->
-                <!--                  {{ selDaysOption.oldPriceTotal.toLocaleString() }} ₸-->
-                <!--                </p>-->
-                <!--                <p class="in-total-price__price">-->
-                <!--                  {{ selDaysOption.priceTotal.toLocaleString() }}₸-->
-                <!--                </p>-->
+                <p
+                    class="in-total-price__old-price"
+                    v-if="selDaysOption.oldPriceTotal !== selDaysOption.priceTotal"
+                >
+                  {{ selDaysOption.oldPriceTotal.toLocaleString() }} ₸
+                </p>
+                <p class="in-total-price__price">
+                  {{ selDaysOption.priceTotal.toLocaleString() }}₸
+                </p>
               </div>
               <a href="#" class="btn btn--full in-total-btn" @click.prevent="showMakingOrder = true">Оформить заказ</a>
             </div>
@@ -206,65 +206,35 @@ const selPrg = ref(programs[0])
 const selCaloriesOption = ref(selPrg.value.calories_options[0])
 
 const daysOptionsTemplate = ref([])
-onMounted(async () => {
-  daysOptionsTemplate.value = await getDaysOptions()
-})
-
-//     [
-//   {
-//     name_ru: '2 дня',
-//     days: 2,
-//     discount: 0
-//   },
-//   {
-//     name_ru: '4 дня',
-//     days: 4,
-//     discount: 0.05
-//   },
-//   {
-//     name_ru: '6 дня',
-//     days: 6,
-//     discount: 0.1
-//   },
-//   {
-//     prg_id: 'loss',
-//     name_ru: '12 дней',
-//     days: 12,
-//     discount: 0.15
-//   },
-//   {
-//     name_ru: '24 дня',
-//     days: 24,
-//     discount: 0.18
-//   },
-//   {
-//     name_ru: '30 дней',
-//     days: 30,
-//     discount: 0.22
-//   }
-// ]
 
 
 const daysOptions = computed(() => {
-  const {prg_id, price} = selCaloriesOption.value
+  const {prg_id, pricePerDay} = selCaloriesOption.value
+
+  console.log(prg_id, pricePerDay)
 
   const options = daysOptionsTemplate.value.map((el) => {
-    const newPricePerDay = Math.floor(price * (1 - el.discount))
-    const totalPrice = newPricePerDay * el.days
+    const newPricePerDay = Math.floor(pricePerDay * (1 - Number(el.discount)))
+    const totalPrice = newPricePerDay * el.days_amount
 
     return {
       ...el,
       prg_id,
       pricePerDay: newPricePerDay,
       priceTotal: totalPrice,
-      oldPriceTotal: price * el.days
+      oldPriceTotal: pricePerDay * el.days_amount
     }
   })
 
   return options
 })
 
-const selDaysOption = ref(daysOptions.value[0])
+const selDaysOption = ref(daysOptionsTemplate.value[0])
+onMounted(async () => {
+  daysOptionsTemplate.value = await getDaysOptions()
+  selDaysOption.value = daysOptions.value[0]
+})
+
 
 watch(selPrg, (newPrg) => {
   selCaloriesOption.value = newPrg.calories_options[0]
