@@ -121,6 +121,9 @@ import IconBodyLoss from '@/components/icons/IconBodyLoss.vue'
 import IconDaily from '@/components/icons/IconDaily.vue'
 import IconMuscle from '@/components/icons/IconMuscle.vue'
 import {getDaysOptions} from "@/services/getDaysOptions";
+import dailyImg from '@/assets/images/daily-1.jpg'
+import lossImg from '@/assets/images/weight-loss-1.jpg'
+import muscleImg from '@/assets/images/muscle-1.jpg'
 
 const programs = [
   {
@@ -136,7 +139,7 @@ const programs = [
       }
     ],
     image: {
-      url: '/public/daily-1.jpg',
+      url: dailyImg,
       name_ru: 'Полезный куриный стир-фрай',
       description: '465 кКал • 35 г • 13 г • 47 г'
     }
@@ -165,7 +168,7 @@ const programs = [
     ],
     image:
         {
-          url: '/public/weight-loss-1.jpg',
+          url: lossImg,
           name_ru: 'Суп с фрикадельками и томатом',
           description: '330 кКал • 17 г • 12 г • 36 г'
         }
@@ -189,7 +192,7 @@ const programs = [
     ],
     image:
         {
-          url: '/public/muscle-1.jpg',
+          url: muscleImg,
           name_ru: 'Бефстроганов с курицей',
           description: '425 кКал • 43 г • 23 г • 11 г'
         }
