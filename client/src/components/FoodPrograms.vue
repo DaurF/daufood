@@ -136,7 +136,7 @@ const programs = [
       }
     ],
     image: {
-      url: 'src/assets/images/daily-1.jpg',
+      url: '/public/daily-1.jpg',
       name_ru: 'Полезный куриный стир-фрай',
       description: '465 кКал • 35 г • 13 г • 47 г'
     }
@@ -165,7 +165,7 @@ const programs = [
     ],
     image:
         {
-          url: 'src/assets/images/weight-loss-1.jpg',
+          url: '/public/weight-loss-1.jpg',
           name_ru: 'Суп с фрикадельками и томатом',
           description: '330 кКал • 17 г • 12 г • 36 г'
         }
@@ -189,7 +189,7 @@ const programs = [
     ],
     image:
         {
-          url: 'src/assets/images/muscle-1.jpg',
+          url: '/public/muscle-1.jpg',
           name_ru: 'Бефстроганов с курицей',
           description: '425 кКал • 43 г • 23 г • 11 г'
         }
