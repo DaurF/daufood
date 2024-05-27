@@ -24,16 +24,14 @@
         <div class="selected-program-content">
           <div
               class="selected-program-content__meal-wrapper"
-              v-for="img in selPrg.images"
-              :key="img.url"
           >
-            <img :src="img.url" class="selected-program-content__meal" :alt="`${img.name_ru} 1`"/>
+            <img :src="selPrg.image.url" class="selected-program-content__meal" :alt="selPrg.image.name_ru"/>
             <div class="selected-program-content__meal-text">
               <p class="selected-program-content__meal-text__heading">
-                {{ img.name_ru }}
+                {{ selPrg.image.name_ru }}
               </p>
               <p class="selected-program-content__meal-text__description">
-                {{ img.description }}
+                {{ selPrg.image.description }}
               </p>
             </div>
           </div>
@@ -70,12 +68,12 @@
               </div>
               <div class="days-header">
                 <span>Количество дней</span>
-<!--                <p>-->
-<!--                  <span class="selected-program-price-per-day"-->
-<!--                  >{{ selDaysOption.price }}-->
-<!--                  </span>-->
-<!--                  <span> ₸/день</span>-->
-<!--                </p>-->
+                <!--                <p>-->
+                <!--                  <span class="selected-program-price-per-day"-->
+                <!--                  >{{ selDaysOption.price }}-->
+                <!--                  </span>-->
+                <!--                  <span> ₸/день</span>-->
+                <!--                </p>-->
               </div>
               <div class="days-options">
                 <button
@@ -98,15 +96,15 @@
             <div class="in-total">
               <div class="in-total-price">
                 <p class="in-total-price__label">Итого:</p>
-<!--                <p-->
-<!--                    class="in-total-price__old-price"-->
-<!--                    v-if="selDaysOption.oldPriceTotal !== selDaysOption.priceTotal"-->
-<!--                >-->
-<!--                  {{ selDaysOption.oldPriceTotal.toLocaleString() }} ₸-->
-<!--                </p>-->
-<!--                <p class="in-total-price__price">-->
-<!--                  {{ selDaysOption.priceTotal.toLocaleString() }}₸-->
-<!--                </p>-->
+                <!--                <p-->
+                <!--                    class="in-total-price__old-price"-->
+                <!--                    v-if="selDaysOption.oldPriceTotal !== selDaysOption.priceTotal"-->
+                <!--                >-->
+                <!--                  {{ selDaysOption.oldPriceTotal.toLocaleString() }} ₸-->
+                <!--                </p>-->
+                <!--                <p class="in-total-price__price">-->
+                <!--                  {{ selDaysOption.priceTotal.toLocaleString() }}₸-->
+                <!--                </p>-->
               </div>
               <a href="#" class="btn btn--full in-total-btn" @click.prevent="showMakingOrder = true">Оформить заказ</a>
             </div>
@@ -127,7 +125,7 @@ import {getDaysOptions} from "@/services/getDaysOptions";
 const programs = [
   {
     id: 'daily',
-    name_ru: 'Базированная',
+    name_ru: 'База',
     description_ru:
         'Этот план предназначен для людей, ведущих активный образ жизни и нуждающихся в энергии в течение всего дня. Программа включает пять приемов пищи: три основных блюда и два перекуса, которые помогают поддерживать энергию на высоком уровне без скачков глюкозы.',
     calories_options: [
@@ -137,13 +135,11 @@ const programs = [
         pricePerDay: 7200
       }
     ],
-    images: [
-      {
-        url: 'public/daily-1.jpg',
-        name_ru: 'Полезный куриный стир-фрай',
-        description: '465 кКал • 35 г • 13 г • 47 г'
-      }
-    ]
+    image: {
+      url: 'src/assets/images/daily-1.jpg',
+      name_ru: 'Полезный куриный стир-фрай',
+      description: '465 кКал • 35 г • 13 г • 47 г'
+    }
   },
   {
     id: 'loss',
@@ -167,13 +163,12 @@ const programs = [
         pricePerDay: 6500
       }
     ],
-    images: [
-      {
-        url: 'public/weight-loss-1.jpg',
-        name_ru: 'Суп с фрикадельками и томатом',
-        description: '330 кКал • 17 г • 12 г • 36 г'
-      }
-    ]
+    image:
+        {
+          url: 'src/assets/images/weight-loss-1.jpg',
+          name_ru: 'Суп с фрикадельками и томатом',
+          description: '330 кКал • 17 г • 12 г • 36 г'
+        }
   },
   {
     id: 'muscle',
@@ -192,13 +187,12 @@ const programs = [
         pricePerDay: 9000
       }
     ],
-    images: [
-      {
-        url: 'public/muscle-1.jpg',
-        name_ru: 'Бефстроганов с курицей',
-        description: '425 кКал • 43 г • 23 г • 11 г'
-      }
-    ]
+    image:
+        {
+          url: 'src/assets/images/muscle-1.jpg',
+          name_ru: 'Бефстроганов с курицей',
+          description: '425 кКал • 43 г • 23 г • 11 г'
+        }
   }
 ]
 
