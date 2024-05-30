@@ -52,10 +52,13 @@
           </li>
         </template>
         <template v-else>
-          <p class="username">@{{ currentUsername }}</p>
-          <button class="btn btn--full" @click.prevent="logout">
-            Выйти
-          </button>
+          <div class="flex gap-4 items-center">
+            <router-link to="/admin" class="text-xl font-bold">Админ</router-link>
+            <p class="username">@{{ currentUsername }}</p>
+            <button class="btn btn--full" @click.prevent="logout">
+              Выйти
+            </button>
+          </div>
         </template>
       </ul>
     </div>
