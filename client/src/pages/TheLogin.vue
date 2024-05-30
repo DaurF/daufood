@@ -71,7 +71,7 @@ async function handleSubmit() {
 
 .signup-form input {
   width: 100%;
-  box-shadow: 0 5px 10px #eee;
+  box-shadow: 0 5px 10px #ddd;
   padding: 1.6rem 2.4rem;
   font-size: 1.6rem;
   font-weight: 600;

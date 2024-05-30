@@ -1,9 +1,11 @@
+import * as dotenv from "dotenv";
+
+dotenv.config();
+
 import express from "express";
-import dotenv from "dotenv";
 import cors from "cors";
 import morgan from 'morgan'
 
-dotenv.config();
 import api from "./routes/api.js";
 import {mysqlConnect} from "./services/mysql.js";
 

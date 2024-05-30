@@ -3,8 +3,6 @@ import mysql from "mysql2/promise";
 let pool;
 
 function mysqlConnect() {
-  console.log(`host: ${process.env.MYSQL_HOST}`);
-
   pool = mysql.createPool({
     host: process.env.MYSQL_HOST,
     user: process.env.MYSQL_USER,
@@ -13,4 +11,4 @@ function mysqlConnect() {
   });
 }
 
-export { mysqlConnect, pool };
+export {mysqlConnect, pool};

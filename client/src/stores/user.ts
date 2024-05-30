@@ -18,7 +18,13 @@ export const useUserStore = defineStore('user', () => {
     email.value = null
   }
 
+
+  const getUser = computed(() =>
+    ({username: username.value, email: email.value}))
+
+  const getUserId = computed(() => userId.value)
+
   const loggedIn = computed(() => userId.value && username.value && email.value)
 
-  return {userId, username, email, setUser, loggedIn, unsetUser}
+  return {userId, username, email, setUser, loggedIn, unsetUser, getUser, getUserId}
 })

@@ -1,5 +1,5 @@
 <template>
-  <section class="about-us">
+  <section id="about-us" class="about-us">
     <div class="about-us-content-wrapper">
       <div class="about-us__img-wrapper">
         <!--        <img class="about-us__img" src="@/assets/images/some-guy.png" alt="About us image of a guy">-->

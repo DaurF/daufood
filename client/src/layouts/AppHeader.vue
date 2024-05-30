@@ -9,7 +9,11 @@
           </li>
 
           <li>
-            <a class="nav-link" href="#">О нас</a>
+            <a class="nav-link" href="#about-us">О нас</a>
+          </li>
+
+          <li>
+            <router-link :to="{name: 'orders'}" class="nav-link">Заказы</router-link>
           </li>
         </ul>
       </nav>
@@ -48,6 +52,7 @@
           </li>
         </template>
         <template v-else>
+          <p class="username">@{{ currentUsername }}</p>
           <button class="btn btn--full" @click.prevent="logout">
             Выйти
           </button>
@@ -60,6 +65,7 @@
 import IconWhatsapp from "@/components/icons/IconWhatsapp.vue";
 import IconTelegram from "@/components/icons/IconTelegram.vue";
 import {useUserStore} from '@/stores'
+import {computed} from "vue";
 
 const store = useUserStore()
 
@@ -67,6 +73,10 @@ function logout() {
   store.unsetUser()
   localStorage.removeItem('userId')
 }
+
+const currentUsername = computed(() => {
+  return store.getUser.username
+})
 </script>
 
 <style scoped>
@@ -150,6 +160,7 @@ a.contact-number:visited {
 
 .auth-links {
   display: flex;
+  align-items: center;
   gap: 0.8rem;
 }
 
@@ -162,5 +173,11 @@ a.contact-number:visited {
 .btn--outline:active {
   background: none;
   color: var(--primary-color);
+}
+
+.username {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-right: 1.2rem;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <section class="hero">
-  <div class="hero-content-wrapper">
+    <div class="hero-content-wrapper">
       <div class="hero-text-box">
         <h1 class="heading-primary hero-heading" style="color: #eee">Здоровая еда – основа для <span
             class="hero-emphasize">твоего</span> роста и
@@ -11,9 +11,7 @@
           увлекательным.
         </p>
         <div class="hero-btn-wrapper">
-          <a href="#food-programs" class="btn btn--full" @click="toggleConversation">{{
-                  isCalling ? 'Остановить' : 'Начать питаться правильно'
-              }}</a>
+          <a href="#food-programs" class="btn btn--full">Начать питаться правильно</a>
           <a href="#why-healthy-food" class="btn btn--outline"> Узнать больше</a>
         </div>
         <div class="clients-wrapper">
@@ -31,82 +29,6 @@
 </template>
 
 <script setup lang="ts">
-import {RetellWebClient} from "retell-client-js-sdk";
-import {ref} from "vue";
-import {http} from "@/shared/api";
-
-const agentId = "ea8f159cac00b0db2e47b20f6c772780";
-
-const webClient = new RetellWebClient()
-
-const isCalling = ref(false)
-
-webClient.on("conversationStarted", () => {
-  console.log("conversationStarted");
-}); 
-
-webClient.on("audio", (audio: Uint8Array) => {
-  console.log("There is audio");
-});
-
-webClient.on("conversationEnded", ({code, reason}) => {
-  console.log("Closed with code:", code, ", reason:", reason);
-  isCalling.value = false; // Update button to "Start" when conversation ends
-});
-
-webClient.on("error", (error) => {
-  console.error("An error occurred:", error);
-  isCalling.value = false; // Update button to "Start" in case of error
-});
-
-webClient.on("update", (update) => {
-  // Print live transcript as needed
-  console.log("update", update);
-});
-
-async function toggleConversation() {
-  console.log('toggleА')
-  if (isCalling.value) {
-    webClient.stopConversation();
-  } else {
-    const registerCallResponse = await registerCall(agentId);
-    if (registerCallResponse.callId) {
-      webClient
-          .startConversation({
-            callId: registerCallResponse.callId,
-            sampleRate: registerCallResponse.sampleRate,
-            enableUpdate: true,
-          })
-          .catch(console.error);
-      isCalling.value = true; // Update button to "Stop" when conversation starts
-    }
-  }
-}
-
-async function registerCall(agentId: string) {
-  try {
-    // Replace with your server url
-    const response = await http.post('/register-call', {
-      agentId: agentId
-    }, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-
-    // if (!response.ok) {
-    //   throw new Error(`Error: ${response.status}`);
-    // }
-
-    console.log(response)
-
-    return response.data;
-  } catch (err) {
-    console.log(err);
-    throw new Error(err);
-  }
-}
-
 </script>
 
 <style scoped>

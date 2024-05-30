@@ -106,7 +106,7 @@
                   {{ selDaysOption.priceTotal.toLocaleString() }}₸
                 </p>
               </div>
-              <a href="#" class="btn btn--full in-total-btn" @click.prevent="showMakingOrder = true">Оформить заказ</a>
+              <button class="btn btn--full in-total-btn" @click.prevent="handleOrdering">Оформить заказ</button>
             </div>
           </div>
         </div>
@@ -124,6 +124,11 @@ import {getDaysOptions} from "@/services/getDaysOptions";
 import dailyImg from '@/assets/images/daily-1.jpg'
 import lossImg from '@/assets/images/weight-loss-1.jpg'
 import muscleImg from '@/assets/images/muscle-1.jpg'
+import {useRouter} from "vue-router";
+import {useOrderStore} from "@/stores";
+
+const router = useRouter()
+const orderStore = useOrderStore()
 
 const programs = [
   {
@@ -200,8 +205,6 @@ const programs = [
 ]
 
 
-const showMakingOrder = ref(false)
-
 const selPrg = ref(programs[0])
 const selCaloriesOption = ref(selPrg.value.calories_options[0])
 
@@ -243,6 +246,14 @@ watch(selPrg, (newPrg) => {
 watch(daysOptions, (newDaysOptions) => {
   selDaysOption.value = newDaysOptions[0]
 })
+
+function handleOrdering() {
+  orderStore.setOrder({
+    id: selPrg.value.id,
+    name_ru: selPrg.value.name_ru
+  }, selCaloriesOption.value.calories, selCaloriesOption.value.pricePerDay, selDaysOption.value.days_amount, selDaysOption.value.priceTotal)
+  router.push({name: 'order'})
+}
 </script>
 
 <style scoped>
